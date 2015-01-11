@@ -2,6 +2,7 @@
 
 Carl-Henrik Skårstedt (#Sakrac)
 
+
 This is a reference implementation, something to dig up if I come up with a need for a binary search.
 
 The purpose of this implementation is to shuffle a sorted array in-place such that binary search can be performed by starting with the first element and only looking forward in memory and has closer locality between each step.
