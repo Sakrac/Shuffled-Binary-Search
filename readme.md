@@ -34,23 +34,23 @@ For larger blocks in the array the operation is:
 Move all elements in the lower half of the array down and put the pushed out value first, then recurse into the lower half and the upper half.
 
 For smaller blocks it is trivial to just swap a few elements around:
-- 0 => 0 (1 element)
-- 01 => 10 (2 elements)
-- 012 => 102 (3 elements)
-- 0123 => 2103 (4)
-- 01234 => 21043 (5)
-- 012345 => 310254 (6)
-- 0123456 => 3102546 (7)
-- 01234567 => 42103657 (8, starts to get more complicated)
+- `0 => 0` (1 element)
+- `01 => 10` (2 elements)
+- `012 => 102` (3 elements)
+- `0123 => 2103` (4)
+- `01234 => 21043` (5)
+- `012345 => 310254` (6)
+- `0123456 => 3102546` (7)
+- `01234567 => 42103657` (8, starts to get more complicated)
 
 count => operations:
-- 0 or 1 => do nothing
-- 2 => swap (1,0)
-- 3 => swap (1,0) (same as 2)
-- 4 => swap (2,0)
-- 5 => swap (2,0) swap(3,4) (same as 4 + swap(3,4))
-- 6 => shift (3,0,2) swap (4,5)
-- 7 => shift (3,0,2) swap (4,5) (same as 6)
+- `0 or 1 =>` do nothing
+- `2 => swap (1,0)`
+- `3 => swap (1,0) (same as 2)`
+- `4 => swap (2,0)`
+- `5 => swap (2,0) swap(3,4) (same as 4 + swap(3,4))`
+- `6 => shift (3,0,2) swap (4,5)`
+- `7 => shift (3,0,2) swap (4,5) (same as 6)`
 
 Given the shuffled binary search array, the search function is trivial to implement.
 
