@@ -46,16 +46,16 @@ For smaller blocks it is trivial to just swap a few elements around:
 - `0123456789 => 5210438769`
 
 count => operations:
-	0 or 1 => do nothing
-	2 => swap (1,0)
-	3 => swap (1,0) (same as 2)
-	4 => swap (2,0)
-	5 => swap (2,0) swap(3,4) (same as 4 + swap(3,4))
-	6 => shift (3,0,2) swap (4,5)
-	7 => shift (3,0,2) swap (4,5) (same as 6)
-	8 => shift (4,0,3) swap(1,2) swap(5,6)
-	9 => shift (4,0,3) swap(1,2) swap(5,7)
-	10 => shift(5,0,3) swap(1,2) swap(6,8)
+- 0 or 1 => do nothing
+- 2 => swap (1,0)
+- 3 => swap (1,0) (same as 2)
+- 4 => swap (2,0)
+- 5 => swap (2,0) swap(3,4) (same as 4 + swap(3,4))
+- 6 => shift (3,0,2) swap (4,5)
+- 7 => shift (3,0,2) swap (4,5) (same as 6)
+- 8 => shift (4,0,3) swap(1,2) swap(5,6)
+- 9 => shift (4,0,3) swap(1,2) swap(5,7)
+- 10 => shift(5,0,3) swap(1,2) swap(6,8)
 
 Given the shuffled binary search array, the search function is trivial to implement.
 
