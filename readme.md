@@ -42,15 +42,20 @@ For smaller blocks it is trivial to just swap a few elements around:
 - `012345 => 310254` (6)
 - `0123456 => 3102546` (7)
 - `01234567 => 42103657` (8, starts to get more complicated)
+- `012345678 => 421037658`
+- `0123456789 => 5210438769`
 
 count => operations:
-- `0 or 1 =>` do nothing
-- `2 => swap (1,0)`
-- `3 => swap (1,0)` (same as 2)
-- `4 => swap (2,0)`
-- `5 => swap (2,0) swap(3,4)`
-- `6 => shift (3,0,2) swap (4,5)`
-- `7 => shift (3,0,2) swap (4,5)` (same as 6)
+	0 or 1 => do nothing
+	2 => swap (1,0)
+	3 => swap (1,0) (same as 2)
+	4 => swap (2,0)
+	5 => swap (2,0) swap(3,4) (same as 4 + swap(3,4))
+	6 => shift (3,0,2) swap (4,5)
+	7 => shift (3,0,2) swap (4,5) (same as 6)
+	8 => shift (4,0,3) swap(1,2) swap(5,6)
+	9 => shift (4,0,3) swap(1,2) swap(5,7)
+	10 => shift(5,0,3) swap(1,2) swap(6,8)
 
 Given the shuffled binary search array, the search function is trivial to implement.
 
@@ -70,6 +75,21 @@ The returned array index will refer to the location in the shuffled array so one
 Another option is to _unshuffle_ the **index** from the key lookup into a **linear index**, which is a small O(log n) loop, without any memory access.
 
 - Call **DeshuffleIndex** to convert a shuffled index into a linear index.
+
+###Removal and Insertion
+
+Just for completion and the rare case that a shuffled binary search array with insertion and removal would actually make sense, here's some code to handle that.
+
+ - void **SortShuffledArray**(int *array, int count)
+	- Sorts a shuffled array.
+ - int **RemoveShuffledArrayValue**(int value, int *shuffled_array, int count)
+	- Removes a value from a shuffled array, returns new count.
+ - int **InsertShuffledArrayValue**(int value, int *shuffled_array, int count)
+	- Inserts a value into a shuffled array, checks for duplicate, returns new count.
+
+Initially the idea was to just use qsort or something on the shuffled array but the difference in performance between shuffling an array and sorting it is just too large.
+
+Keep in mind that calling InsertShuffledArrayValue requires that there is room for the array to grow. Check the return value from Remove and Insert since it is valid that the count does not change (Removing a value that doesn't exist or Inserting a duplicate value would result in 'count' not changing).
 
 ###Test code
 
